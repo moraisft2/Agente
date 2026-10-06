@@ -1,0 +1,39 @@
+2026-09-12 15:10:31 [ERROR] Erro na validação: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+Traceback (most recent call last):
+  File "c:\Users\Morais\Desktop\Project\projec.py", line 1112, in validar
+    validacao_md, metadados = validar_especificacao(documento_md)
+                              ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\Users\Morais\Desktop\Project\projec.py", line 848, in validar_especificacao
+    resposta = client.chat.completions.create(
+        messages=[
+    ...<15 lines>...
+        max_tokens=3000
+    )
+  File "C:\Users\Morais\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Morais\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Morais\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.NotFoundError: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-09-12 15:14:17 [INFO] ETR gerada id=1 modelo=openai/gpt-oss-120b tokens_in=2154 tokens_out=4096
+2026-09-12 15:15:29 [INFO] Validação salva etr_id=1 score=78 decisão=APTO PARA REVISÃO HUMANA
+2026-09-14 09:37:18 [INFO] ETR gerada id=2 modelo=openai/gpt-oss-120b tokens_in=2099 tokens_out=4096
+2026-09-14 09:38:01 [INFO] Validação salva etr_id=1 score=78 decisão=REVISÃO NECESSÁRIA
+2026-09-28 09:31:13 [INFO] ETR généré id=1 modèle=openai/gpt-oss-120b tokens_in=2266 tokens_out=4096
+2026-09-28 09:48:39 [INFO] ETR généré id=2 modèle=openai/gpt-oss-120b tokens_in=2428 tokens_out=4096
+2026-09-28 09:49:30 [INFO] Validation enregistrée etr_id=2 score=71 décision=RÉVISION NÉCESSAIRE
+2026-09-28 10:02:14 [INFO] ETR final généré id=3 modèle=openai/gpt-oss-120b tokens_in=6098 tokens_out=6000
+2026-09-28 10:07:57 [INFO] ETR final généré id=4 modèle=openai/gpt-oss-120b tokens_in=3476 tokens_out=6000
+2026-09-28 10:16:06 [INFO] ETR final généré id=5 client=BNP paribas modèle=openai/gpt-oss-120b
+2026-09-28 10:40:43 [INFO] ETR final généré id=6 client=BNP paribas modèle=openai/gpt-oss-120b
+2026-09-28 10:45:07 [INFO] ETR final généré id=7 client=BNP paribas modèle=openai/gpt-oss-120b
