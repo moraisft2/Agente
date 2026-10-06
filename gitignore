@@ -1,0 +1,19 @@
+# Environment / secrets
+.env
+*.env
+
+# SQLite database (local data, not source)
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
