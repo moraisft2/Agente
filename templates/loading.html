@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} - Generating...{% endblock %}
+{% block content %}
+
+<h1>{{ etr['feature'] }}</h1>
+<p class="subtitle">{{ etr['client'] }}</p>
+
+<div class="card" style="text-align:center; padding:48px 28px;">
+    <div class="spinner"></div>
+    <p id="loading-text" style="margin-top:20px; font-size:14px; color:#344054;">
+        Generating the specification, please wait...
+    </p>
+    <p class="hint" style="margin-top:4px;">
+        This can take a minute or two while the agent checks and refines the document.
+    </p>
+</div>
+
+<script>
+    const etrId = {{ etr['id'] }};
+    const text = document.getElementById('loading-text');
+
+    async function poll() {
+        try {
+            const res = await fetch(`/status/${etrId}`);
+            const data = await res.json();
+
+            if (data.attempts) {
+                text.textContent = `Generating the specification (attempt ${data.attempts})...`;
+            }
+
+            if (data.status === 'draft' || data.status === 'approved') {
+                window.location.href = `/view/${etrId}`;
+                return;
+            }
+            if (data.status === 'error') {
+                window.location.href = `/view/${etrId}`;
+                return;
+            }
+        } catch (e) {
+            // network hiccup - keep polling
+        }
+        setTimeout(poll, 3000);
+    }
+
+    poll();
+</script>
+
+{% endblock %}

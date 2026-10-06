@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %} - Clarifying Questions{% endblock %}
+{% block content %}
+
+<h1>A Few Clarifying Questions</h1>
+<p class="subtitle">{{ etr['feature'] }} &middot; {{ etr['client'] }}</p>
+<p class="hint">Answering is optional. Anything left blank or still unclear will be listed as an open question in the specification.</p>
+
+<div class="card">
+    <form method="POST" action="/generate/{{ etr['id'] }}">
+        {% for q in questions %}
+            <label>{{ loop.index }}. {{ q }}</label>
+            <textarea name="answer_{{ loop.index0 }}" style="min-height:60px" placeholder="Your answer (optional)"></textarea>
+        {% endfor %}
+
+        <button type="submit" class="btn">Generate Specification</button>
+    </form>
+</div>
+
+{% endblock %}

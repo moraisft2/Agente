@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} - History{% endblock %}
+{% block content %}
+
+<h1>Specification History</h1>
+<p class="subtitle">All specifications generated so far. Click one to open it.</p>
+
+<div class="card">
+    {% if rows %}
+    <table class="list">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Feature</th>
+                <th>Country</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            {% if row['status'] == 'questions' %}
+                {% set link = '/answer/' ~ row['id'] %}
+            {% elif row['status'] == 'generating' %}
+                {% set link = '/loading/' ~ row['id'] %}
+            {% else %}
+                {% set link = '/view/' ~ row['id'] %}
+            {% endif %}
+            <tr>
+                <td><a href="{{ link }}">{{ row['id'] }}</a></td>
+                <td>{{ row['client'] }}</td>
+                <td>{{ row['feature'] }}</td>
+                <td>{{ row['country'] }}</td>
+                <td><span class="status-badge status-{{ row['status'] }}">{{ row['status'] }}</span></td>
+                <td>{{ row['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty">No specification has been generated yet.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

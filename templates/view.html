@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} - Specification #{{ etr['id'] }}{% endblock %}
+{% block content %}
+
+<h1>{{ etr['feature'] }}</h1>
+<p class="subtitle">{{ etr['client'] }} &middot; Specification #{{ etr['id'] }} &middot; Created {{ etr['created_at'] }}</p>
+
+<span class="status-badge status-{{ etr['status'] }}">{{ etr['status'] }}</span>
+{% if attempts %}
+    <span style="font-size:12px;color:#667085;margin-left:8px;">
+        Generated in {{ attempts }} LLM request{{ 's' if attempts > 1 }}
+    </span>
+{% endif %}
+
+{% if etr['status'] == 'error' %}
+<div class="notice error">
+    <strong>Generation failed:</strong>
+    <ul>{% for i in issues %}<li>{{ i }}</li>{% endfor %}</ul>
+</div>
+<div class="actions">
+    <a href="/" class="btn btn-ghost">New Specification</a>
+    <a href="/history" class="btn btn-ghost">Back to History</a>
+</div>
+
+{% else %}
+
+{% if issues %}
+<div class="notice">
+    <strong>The automatic check still found problems after several attempts:</strong>
+    <ul>{% for i in issues %}<li>{{ i }}</li>{% endfor %}</ul>
+    Review the document carefully, edit it if needed, or generate a new one.
+</div>
+{% endif %}
+
+<div class="document">
+    {{ document_html | safe }}
+</div>
+
+<div class="actions">
+    {% if etr['status'] == 'approved' %}
+        <a href="/export-pdf/{{ etr['id'] }}" class="btn btn-secondary">Export as PDF</a>
+    {% else %}
+        <a href="/edit/{{ etr['id'] }}" class="btn btn-ghost">Edit specification</a>
+        <form method="POST" action="/approve/{{ etr['id'] }}" style="margin:0;">
+            <button type="submit" class="btn btn-secondary">Approve specification</button>
+        </form>
+    {% endif %}
+    <a href="/" class="btn btn-ghost">New Specification</a>
+    <a href="/history" class="btn btn-ghost">Back to History</a>
+</div>
+
+{% endif %}
+
+{% endblock %}

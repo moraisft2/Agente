@@ -1,0 +1,12 @@
+{
+  "regulatory_constraints": [
+    "Personal data protection (GDPR and local equivalents).",
+    "Multi-country regulation.",
+    "Customer data confidentiality."
+  ],
+  "technical_constraints": [
+    "Never invent a real API.",
+    "Never invent a specific law.",
+    "Flag any uncertainty with: \"Legal validation required.\""
+  ]
+}

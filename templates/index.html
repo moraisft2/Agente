@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} - New Specification{% endblock %}
+{% block content %}
+
+<h1>New Technical Requirements Specification</h1>
+<p class="subtitle">Describe a business need. The agent will first ask a few clarifying questions, then generate the specification.</p>
+
+<div class="card">
+    <form method="POST" action="/clarify">
+
+        <label>Business need</label>
+        <textarea
+            name="need"
+            placeholder="Example: Allow the customer to add a secondary driver to their leasing contract from the mobile app. The driver must be verified (identity and driving licence) before approval. The insurer must be notified."
+            required
+        ></textarea>
+
+        <div class="grid-2">
+            <div>
+                <label>Client / Company name</label>
+                <input type="text" name="client" placeholder="e.g. BNP Paribas" required>
+            </div>
+            <div>
+                <label>Feature name</label>
+                <input type="text" name="feature" placeholder="e.g. Add a secondary driver" required>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <label>Requester (analyst / PO)</label>
+                <input type="text" name="requester" placeholder="e.g. Marie Dupont">
+            </div>
+            <div>
+                <label>Country / Regulatory context</label>
+                <select name="country">
+                    <option value="France">France</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="European Union">European Union</option>
+                </select>
+            </div>
+        </div>
+
+        <label>Main actor</label>
+        <input type="text" name="actor" placeholder="e.g. Customer, Driver, Leasing Manager" required>
+
+        <button type="submit" class="btn">Get Clarifying Questions</button>
+    </form>
+</div>
+
+{% endblock %}

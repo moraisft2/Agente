@@ -1,0 +1,25 @@
+{
+  "domain": "Long-term vehicle leasing (LLD)",
+  "activity": "Vehicle leasing, contract management, insurance, maintenance, resale at end of contract",
+  "actors": [
+    "Customer / Lessee", "Primary driver", "Secondary driver", "Leasing manager",
+    "Back-office operator", "Insurer", "Leasing system", "Financial system",
+    "Insurance system", "Identity verification service", "Driving licence verification service"
+  ],
+  "processes": [
+    "Simulation", "Proposal", "Credit check", "Contracting", "Signature",
+    "Contract management", "Add / modify / remove secondary driver", "Vehicle management",
+    "Insurance", "Payments", "Maintenance", "Renewal", "Return", "Resale", "Contract closure"
+  ],
+  "data": [
+    "Identity", "Contact details", "Driving licence", "Contract data",
+    "Vehicle data", "Insurance data", "Financial data"
+  ],
+  "business_rules": [
+    "Minimum age and licence seniority based on the contract.",
+    "Authorised country of residence.",
+    "Maximum number of drivers per contract.",
+    "Mandatory notification to the insurer.",
+    "Mandatory validation before activation."
+  ]
+}

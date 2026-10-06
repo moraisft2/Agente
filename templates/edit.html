@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} - Edit Specification{% endblock %}
+{% block content %}
+
+<h1>Edit Specification</h1>
+<p class="subtitle">{{ etr['feature'] }} &middot; {{ etr['client'] }} &middot; Specification #{{ etr['id'] }}</p>
+<p class="hint">Edit the Markdown directly, then save. You can still approve or edit again afterwards.</p>
+
+<div class="card">
+    <form method="POST" action="/edit/{{ etr['id'] }}">
+        <textarea name="content_md" class="code">{{ etr['content_md'] }}</textarea>
+        <div class="actions" style="margin-top:4px;">
+            <button type="submit" class="btn btn-secondary">Save changes</button>
+            <a href="/view/{{ etr['id'] }}" class="btn btn-ghost">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
